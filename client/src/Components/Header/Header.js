@@ -8,7 +8,7 @@ class Header extends Component{
         return(
             <nav>
                 <div className="nav-wrapper header-color header-wrapper">
-                    <a className="left brand-logo logo header-text">Taylorsville Football</a>
+                    <a href="/" className="left brand-logo logo header-text">Taylorsville Football</a>
                     <ul className="right">
                         <li><Link>Coaches</Link></li>
                         <li><Link>Schedule</Link></li>
