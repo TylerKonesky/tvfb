@@ -1,0 +1,32 @@
+.home-body-wrapper{
+    background-color: royalblue;
+    height: 425px;
+}
+.logo-wrapper{
+    align-self: center;
+    text-align: center;
+}
+
+.logo-wrapper img{
+    height: 400px;
+    width: 400px;
+}
+
+@media(max-width: 700px){
+    .parallax-container{
+        height: 50vh !important;
+    }
+    .home-page-wrapper{
+        height: 100%;
+    }
+    .home-body-wrapper{
+        height: 150px;
+    }
+    .logo-wrapper img{
+        height: 100px;
+        width: 100px;
+    }
+    .parallax-images{
+        height: 300px;
+    } 
+}
