@@ -1,5 +1,5 @@
 .home-body-wrapper{
-    background-color: royalblue;
+    background: linear-gradient(royalblue, gold);
     height: 425px;
 }
 .logo-wrapper{
