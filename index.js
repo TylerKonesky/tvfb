@@ -14,7 +14,7 @@ mongoose.connect(keys.mongoURI)
 
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: "50mb"}));
 
 app.use(
     cookieSession({
@@ -27,6 +27,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app)
+require('./routes/coachRoutes')(app)
 
 
 if(process.env.NODE_ENV === 'production'){
