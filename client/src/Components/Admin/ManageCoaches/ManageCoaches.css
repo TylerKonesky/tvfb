@@ -1,0 +1,15 @@
+.button-wrappers button{
+    margin-right: 20px;
+}
+.bio-image{
+    max-height: 300px;
+    max-width: 400px;
+}
+
+.delete{
+    background-color: red;
+}
+
+.card-size{
+    max-width: 400px !important;
+}

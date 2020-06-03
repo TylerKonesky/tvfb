@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const coachSchema = new Schema({
     name: String,
     position: String,
-    image: Blob,
+    image: String,
     bio: String
 
 
@@ -12,4 +12,4 @@ const userSchema = new Schema({
     
 })
 
-mongoose.model('users', userSchema);
+mongoose.model('coaches', coachSchema);

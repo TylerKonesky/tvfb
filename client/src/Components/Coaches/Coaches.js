@@ -44,9 +44,9 @@ class Coaches extends Component{
                         <p>{coach.position}</p>
                     </div>  
                     <div className="card-reveal">
-                        <span className="card-title grey-text text-darken-4">{coach.name}<i className="material-icons right">close</i></span>
-                        <p>{coach.position}</p>
-                        <p>{coach.bio}</p>
+                        <span className="card-title grey-text text-darken-4">Name: {coach.name}<i className="material-icons right">close</i></span>
+                        <p>Position: {coach.position}</p>
+                        <p>Bio: {coach.bio}</p>
                     </div>
                     
                 </div>
