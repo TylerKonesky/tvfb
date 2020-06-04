@@ -6,3 +6,25 @@
     max-height: 400px;
     max-width: 400px;
 }
+
+.page-title{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.coaches-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media(max-width: 1750px){
+    .coaches-grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 1200px){
+    .coaches-grid{
+        grid-template-columns: 1fr;  
+    }
+}

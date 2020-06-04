@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchCoaches} from '../../../actions';
+import {fetchCoaches, fetchUser} from '../../../actions';
 import './ManageCoaches.css';
 import '../Admin.css';
 import axios from 'axios';
@@ -18,6 +18,7 @@ class ManageCoaches extends Component{
     }
 
     componentDidMount(){
+        this.props.fetchUser();
         this.props.fetchCoaches();
     }
 
@@ -42,13 +43,21 @@ class ManageCoaches extends Component{
 
     addNewCoach(e){
         e.preventDefault();
-        axios.post('/api/addNewCoach', {name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image})
+        axios.post('/api/coaches/addNewCoach', {name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image})
     }
     renderImage(image){
         const newString = image.split(',');
         return(
             <img className="bio-image"src={`data:image/jpeg;base64, ${newString[1]}`} alt="coach"></img>
         )
+    }
+
+    deleteCoach(e, id){
+        e.preventDefault();
+        axios.delete(`/api/coaches/deleteCoach/${id}`).then(res =>{
+            console.log('Coach Deleted');
+            this.props.fetchCoaches();
+        })
     }
 
     renderCoaches(){
@@ -74,7 +83,7 @@ class ManageCoaches extends Component{
                                     </div>
                                     <div className="card-action button-wrappers">
                                         <button className="waves-effect waves-light btn edit"><i className="material-icons">edit</i></button>
-                                        <button className="waves-effect waves-light btn button-right delete" ><i className="material-icons">cancel</i></button>
+                                        <button className="waves-effect waves-light btn button-right delete" onClick={(e)=>{this.deleteCoach(e, coach._id)}} ><i className="material-icons">cancel</i></button>
                                     </div>
                                 </div>
                             </div>
@@ -83,10 +92,28 @@ class ManageCoaches extends Component{
                 })
         }
     }
+    renderAccess(){
+        switch(this.props.user){
+            case null:
+                return;
+            case false: 
+                return(<div>You must be logged in to view this page</div>)
+            default:
+                if(this.props.user.userType === 'admin'){
+                    return (
+                        <div>
+                            {this.renderAdminView()}
+                        </div>
+                    )
+                }else{
+                    return(<div>You must be an admin to view this page</div>)
+                }
+        }
+    }
 
-    render(){
+    renderAdminView(){
         return(
-            <div className="container">
+            <div>
                 <div>
                     <Link className="header-link active" to="/pageadmin/manageCoaches">Manage Coaches</Link>
                     <Link className="header-link" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
@@ -115,9 +142,17 @@ class ManageCoaches extends Component{
             </div>
         )
     }
+
+    render(){
+        return(
+            <div className="container">
+                {this.renderAccess()}
+            </div>
+        )
+    }
 }
 
 function mapStateToProps({user, coaches}){
     return {user, coaches}
 }
-export default connect(mapStateToProps, {fetchCoaches})(ManageCoaches)
+export default connect(mapStateToProps, {fetchCoaches, fetchUser})(ManageCoaches)

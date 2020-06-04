@@ -13,7 +13,7 @@ module.exports = (app) => {
                 if(req.user.registered){
                     res.redirect('/')
                 }
-                res.redirect('/manage-profile')
+                res.redirect('/pageAdmin')
             })
 
     app.get('/api/logout', (req, res)=>{

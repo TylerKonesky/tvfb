@@ -12,8 +12,7 @@ module.exports = (app) => {
             res.status(401).send(err)
         }
     })
-    app.post('/api/addNewCoach', async (req, res) =>{
-        console.log("Just making sure...")
+    app.post('/api/coaches/addNewCoach', requireLogin, requireAdmin, async (req, res) =>{
         try{
             const newCoach = new Coach({
                 name: req.body.name,
@@ -25,6 +24,15 @@ module.exports = (app) => {
             res.send(newCoach)
         }catch(err){
             res.status(422).send(err)
+        }
+    })
+    app.delete('/api/coaches/deleteCoach/:id', requireLogin, requireAdmin, async (req, res) =>{
+        try{
+            const deleteCoach = await Coach.findByIdAndDelete(req.params.id);
+            const remainingCoaches = await Coach.find();
+            res.send(remainingCoaches);
+        }catch(err){
+            res.status(401).send(err);
         }
     })
 }
