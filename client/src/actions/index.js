@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_COACHES, FETCH_SCHEDULE, FETCH_SPONSORS } from './types';
+import { FETCH_USER, FETCH_COACHES, FETCH_EVENTS, FETCH_SPONSORS } from './types';
 
 export const fetchUser = () => async dispatch =>{
     const res = await axios.get('/api/current_user')
@@ -11,9 +11,9 @@ export const fetchCoaches = () => async dispatch =>{
     dispatch({type: FETCH_COACHES, payload: res.data})
 }
 
-export const fetchSchedule = () => async dispatch =>{
-    const res = await axios.get('/api/getSchedule')
-    dispatch({type: FETCH_SCHEDULE, payload: res.data})
+export const fetchEvents = () => async dispatch =>{
+    const res = await axios.get('/api/events/getAllEvents')
+    dispatch({type: FETCH_EVENTS, payload: res.data})
 }
 
 export const fetchSponsors = () => async dispatch =>{

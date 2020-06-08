@@ -9,6 +9,6 @@ export default combineReducers({
     user: userReducer,
     form: reduxForm,
     coaches: coachReducer,
-    schedule: scheduleReducer,
+    events: scheduleReducer,
     sponsors: sponsorReducer
 })

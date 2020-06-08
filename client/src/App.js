@@ -3,7 +3,8 @@ import './App.css';
 import {BrowserRouter, Route} from 'react-router-dom';
 
 import Admin from './Components/Admin/Admin'
-import Coaches from './Components/Coaches/Coaches'
+import Coaches from './Components/Coaches/Coaches';
+import EditEvent from './Components/Admin/ManageSchedule/EditEvent';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import ManageCoaches from './Components/Admin/ManageCoaches/ManageCoaches';
@@ -22,7 +23,8 @@ function App() {
             <Route exact path="/coaches" component={Coaches}></Route>
             <Route exact path="/pageAdmin" component={Admin}></Route>
             <Route path="/pageAdmin/manageCoaches" component={ManageCoaches}></Route>
-            <Route path="/pageAdmin/manageSchedule" component={ManageSchedule}></Route>
+            <Route exact path="/pageAdmin/manageSchedule" component={ManageSchedule}></Route>
+            <Route path="/pageAdmin/manageSchedule/edit/:id" component={EditEvent}></Route>
             <Route path="/pageAdmin/manageSponsors" component={ManageSponsors}></Route>
             <Route exact path="/schedule" component={Schedule}></Route>
         </div>
