@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter, Route} from 'react-router-dom';
+import {toast} from 'react-toastify';
 
 import Admin from './Components/Admin/Admin'
 import Coaches from './Components/Coaches/Coaches';
@@ -12,7 +14,7 @@ import ManageSchedule from './Components/Admin/ManageSchedule/ManageSchedule'
 import ManageSponsors from './Components/Admin/ManageSponsors/ManageSponsors';
 import Schedule from './Components/Schedule/Schedule';
 
-
+toast.configure()
 function App() {
   return (
     <div>

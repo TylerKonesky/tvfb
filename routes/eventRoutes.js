@@ -38,4 +38,24 @@ module.exports = (app) => {
             res.status(422).send(err)
         }
     })
+
+    app.put('/api/events/update', async (req, res) =>{
+        console.log(req.body)
+       try{
+        const updateEvent = await Event.findByIdAndUpdate(req.body.id, req.body)
+        res.status(200).send(updateEvent)
+       }catch(err){
+           res.status(422).send(err)
+       }
+    })
+
+    app.delete('/api/events/delete/:id', async (req, res) =>{
+        try{
+            const deleteEvent = await Event.findByIdAndDelete(req.params.id);
+            const remainingEvents = await Event.find();
+            res.status(200).send(remainingEvents)
+        }catch(err){
+            res.status(422).send(err)
+        }
+    })
 }

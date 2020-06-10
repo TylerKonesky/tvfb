@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import M from 'materialize-css';
 import {Link } from 'react-router-dom';
 import {connect} from 'react-redux';
+import {toast} from 'react-toastify';
 import {fetchUser, fetchEvents} from '../../../actions'
 import '../Admin.css';
 import './ManageSchedule.css';
 import axios from 'axios';
+import Moment from 'moment';
 
 
 class ManageSchedule extends Component{
@@ -31,9 +33,16 @@ class ManageSchedule extends Component{
         M.Timepicker.init(timeElements);
     }
 
+    dateFormat(date){
+        return(
+            <div>
+                {Moment(date).format('MMMM do YYYY')}
+            </div>
+        )
+    }
+
 
     onEventChange(e){
-        console.log(e)
         this.setState({
             event: e
         })
@@ -67,12 +76,57 @@ class ManageSchedule extends Component{
             location: this.state.location,
             description: this.state.description
         }).then(res =>{
-            console.log(res.data)
+            if(res.status === 200){
+                toast.success('🦄 Event Added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }else{
+                toast.error('🦄 ERROR', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            this.props.fetchEvents();
         })
     }
 
-    handleEdit(id){
+    handleDelete(id){
+        axios.delete(`/api/events/delete/${id}`).then(res=>{
+            if(res.status === 200){
+                toast.success('🦄 Event Deleted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
 
+                this.props.fetchEvents();
+            }else{
+                toast.error('🦄 ERROR', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+        })
     }
 
     renderEvents(){
@@ -82,11 +136,20 @@ class ManageSchedule extends Component{
             case false:
                 return;
             default:
-                console.log(this.props.events)
                 return this.props.events.map(event =>{
                     return(
                         <div>
+                            <div>
+                                {event.event}
+                            </div>
+                            <div>
+                                {event.opponent || null}
+                            </div>
+                            <div>
+                    {this.dateFormat(event.date)}
+                            </div>
                             <Link to={`/pageadmin/manageSchedule/edit/${event._id}`}>Edit</Link>
+                            <button onClick={()=>{this.handleDelete(event._id)}}>Delete</button>
                         </div>)
                 })
                 
@@ -127,12 +190,12 @@ class ManageSchedule extends Component{
 
                                 <label>Location</label>
                                 <div>
-                                    <input type="text" onChange={(e)=>{this.locationChange(e.target.value)}}></input>
+                                    <input type="text" defaultvalue={this.state.location} onChange={(e)=>{this.locationChange(e.target.value)}}></input>
                                 </div>
 
                                 <label>Description</label>
                                 <div>
-                                    <textarea type="text" onChange={(e)=>{this.descriptionChange(e.target.value)}}></textarea>
+                                    <textarea type="text" defaultvalue={this.state.description} onChange={(e)=>{this.descriptionChange(e.target.value)}}></textarea>
                                 </div>                                
                             </form> 
                             <button onClick={(e)=>{this.onSubmit(e)}}>Submit</button>
@@ -154,7 +217,6 @@ class ManageSchedule extends Component{
                     <Link className="header-link" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
                     <Link className="header-link active" to="/pageadmin/manageSchedule">Manage Schedule</Link>
                 </div>
-                Manage Schedule...
                 <div>
                     {this.renderAddNewSchedule()}
                 </div>
