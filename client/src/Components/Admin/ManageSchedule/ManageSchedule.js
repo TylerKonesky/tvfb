@@ -36,7 +36,7 @@ class ManageSchedule extends Component{
     dateFormat(date){
         return(
             <div>
-                {Moment(date).format('MMMM do YYYY')}
+                {Moment(date).format('MMMM Do YYYY')}
             </div>
         )
     }
@@ -129,16 +129,22 @@ class ManageSchedule extends Component{
         })
     }
 
+    sortEvents(events){
+        let sortedEvents = events.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return sortedEvents;
+    }
+
     renderEvents(){
+        
         switch(this.props.events){
             case null:
                 return;
             case false:
                 return;
             default:
-                return this.props.events.map(event =>{
+                return this.sortEvents(this.props.events).map(event =>{    
                     return(
-                        <div>
+                        <div key={event._id}>
                             <div>
                                 {event.event}
                             </div>
@@ -146,11 +152,12 @@ class ManageSchedule extends Component{
                                 {event.opponent || null}
                             </div>
                             <div>
-                    {this.dateFormat(event.date)}
+                                {this.dateFormat(event.date)}
                             </div>
                             <Link to={`/pageadmin/manageSchedule/edit/${event._id}`}>Edit</Link>
                             <button onClick={()=>{this.handleDelete(event._id)}}>Delete</button>
-                        </div>)
+                        </div>
+                    )
                 })
                 
         }
@@ -190,12 +197,12 @@ class ManageSchedule extends Component{
 
                                 <label>Location</label>
                                 <div>
-                                    <input type="text" defaultvalue={this.state.location} onChange={(e)=>{this.locationChange(e.target.value)}}></input>
+                                    <input type="text" defaultValue={this.state.location} onChange={(e)=>{this.locationChange(e.target.value)}}></input>
                                 </div>
 
                                 <label>Description</label>
                                 <div>
-                                    <textarea type="text" defaultvalue={this.state.description} onChange={(e)=>{this.descriptionChange(e.target.value)}}></textarea>
+                                    <textarea type="text" defaultValue={this.state.description} onChange={(e)=>{this.descriptionChange(e.target.value)}}></textarea>
                                 </div>                                
                             </form> 
                             <button onClick={(e)=>{this.onSubmit(e)}}>Submit</button>

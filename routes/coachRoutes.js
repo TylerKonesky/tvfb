@@ -12,6 +12,25 @@ module.exports = (app) => {
             res.status(401).send(err)
         }
     })
+
+    app.get('/api/coaches/getOneCoach/:id', async (req, res) =>{
+        try{
+            const editableCoach = await Coach.findById(req.params.id);
+            res.status(200).send(editableCoach);
+        }catch(err){
+            res.status(422).send(err)
+        }
+    })
+
+    app.put('/api/coaches/updateCoach', requireLogin, requireAdmin, async (req, res) =>{
+        try{
+            const updatedCoach = await Coach.findByIdAndUpdate(req.body.id, req.body);
+            res.status(200).send(updatedCoach);
+        }catch(err){
+            res.status(422).send(err);
+        }
+    })
+
     app.post('/api/coaches/addNewCoach', requireLogin, requireAdmin, async (req, res) =>{
         try{
             const newCoach = new Coach({

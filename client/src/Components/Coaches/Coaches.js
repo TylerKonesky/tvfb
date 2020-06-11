@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
 import {fetchCoaches} from '../../actions'
 import './Coaches.css';
-import image2 from '../../images/image2.jpg'
 
 class Coaches extends Component{
-    constructor(props){
-        super(props);
-    }
-
+  
     componentDidMount(){
         this.props.fetchCoaches();
+    }
+
+    renderImage(image){
+        const newString = image.split(',');
+        return(
+            <img className="bio-image activator image-size"src={`data:image/jpeg;base64, ${newString[1]}`} alt="coach"></img>
+        )
     }
 
     renderCoaches(){
@@ -20,12 +22,11 @@ class Coaches extends Component{
             case false: 
                 return; 
             default:
-                console.log(this.props.coaches)
                 return this.props.coaches.map(coach =>{
                     return(
                         <div className="card card-width">
                             <div className="card-image waves-effect waves-block waves-light"> 
-                                <img className="activator image-size" src={image2}></img>
+                                {this.renderImage(coach.image)}
                             </div>      
                             <div className="card-content">
                                 <span className="card-title activator grey-text text-darken-4">{coach.name}<i className="material-icons right">more_vert</i></span>

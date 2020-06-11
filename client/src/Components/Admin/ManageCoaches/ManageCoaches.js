@@ -82,7 +82,7 @@ class ManageCoaches extends Component{
                                         <p>Bio: {coach.bio}</p>
                                     </div>
                                     <div className="card-action button-wrappers">
-                                        <button className="waves-effect waves-light btn edit"><i className="material-icons">edit</i></button>
+                                        <Link  to={`/pageadmin/manageCoaches/edit/${coach._id}`} className="waves-effect waves-light btn edit"><i className="material-icons">edit</i></Link>
                                         <button className="waves-effect waves-light btn button-right delete" onClick={(e)=>{this.deleteCoach(e, coach._id)}} ><i className="material-icons">cancel</i></button>
                                     </div>
                                 </div>
