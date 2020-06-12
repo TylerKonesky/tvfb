@@ -18,7 +18,7 @@ class Coaches extends Component{
             default:
                 return this.props.coaches.map(coach =>{
                     return(
-                        <div className="card card-width">
+                        <div key={coach._id}className="card card-width">
                             <div className="card-image waves-effect waves-block waves-light"> 
                                 <RenderImage image={coach.image} alt="coach"/>
                             </div>      

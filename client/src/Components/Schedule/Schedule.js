@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchEvents} from '../../actions';
 import DateFormat from '../Helpers/dateFormat'
-import Moment from 'moment';
 import './Schedule.css';
 
 class Schedule extends Component{
@@ -80,16 +80,16 @@ class Schedule extends Component{
                                         {event.time}
                                     </td>
                                     <td>
-                                        {event.location}
+                                        {event.opponent}
                                     </td>
                                     <td>
-                                        {event.opponent}
+                                        {event.location}
                                     </td>
                                     <td>
                                         {event.description}
                                     </td>
                                     <td>
-                                        {event.score}
+                                        <Link to={`/schedule/game/${event._id}`}>{event.score}</Link>
                                     </td>
 
                                 </tr>
@@ -104,9 +104,9 @@ class Schedule extends Component{
     render(){
         return(
             <div className="container">
-                <div>
-                    <button onClick={()=>this.setState({games: true})}>Games</button>
-                    <button onClick={()=>this.setState({games: false})}>Practice</button>
+                <div className="header-buttons-wrapper">
+                    <button className={this.state.games ? `waves-effect waves-light btn active` : `waves-effect waves-light btn inactive`} onClick={()=>this.setState({games: true})}>Games</button>
+                    <button className={this.state.games ? `waves-effect waves-light btn right-button inactive` : `waves-effect waves-light btn right-button active`}  onClick={()=>this.setState({games: false})}>Practice</button>
                 </div>
                 
                     {

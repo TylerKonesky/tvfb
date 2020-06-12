@@ -5,6 +5,7 @@ import {fetchUser, fetchEvents} from '../../../actions';
 import M from 'materialize-css';
 import axios from 'axios';
 import {toast} from 'react-toastify';
+import './EditEvent.css';
 
 class EditEvent extends Component{
     constructor(props){
@@ -27,15 +28,15 @@ class EditEvent extends Component{
     componentDidMount(){
         this.props.fetchEvents();
         axios.get(`/api/events/getOneEvent/${this.props.match.params.id}`).then(res =>{
-            console.log(res.data)
             this.setEvent(res.data)
+            let elements = document.querySelectorAll('.event-select');
+            M.FormSelect.init(elements);
+            let dateElements = document.querySelectorAll('.datepicker')
+            M.Datepicker.init(dateElements, {onSelect: (date) => {this.setState({date: date}) }, defaultDate: this.state.date});
+            let timeElements = document.querySelectorAll('.timepicker')
+            M.Timepicker.init(timeElements)
         })
-        let elements = document.querySelectorAll('.event-select');
-        M.FormSelect.init(elements);
-        let dateElements = document.querySelectorAll('.datepicker')
-        M.Datepicker.init(dateElements, {onSelect: (date) => {this.setState({date: date}) }, defaultDate: this.state.date});
-        let timeElements = document.querySelectorAll('.timepicker')
-        M.Timepicker.init(timeElements)
+        
     }
 
     setEvent(event){
@@ -45,6 +46,7 @@ class EditEvent extends Component{
             date: event.date,
             location: event.location,
             time: event.time,
+            result: event.result || '',
             opponent: event.opponent,
             description: event.description,
             score: event.score,
@@ -56,6 +58,12 @@ class EditEvent extends Component{
     updateEvent(e){
         this.setState({
             event: e
+        })
+    }
+
+    updateResult(e){
+        this.setState({
+            result: e
         })
     }
 
@@ -114,6 +122,7 @@ class EditEvent extends Component{
             event: this.state.event,
             date: this.state.date, 
             time: this.state.time,
+            result: this.state.result,
             location: this.state.location,
             description: this.state.description,
             score: this.state.score,
@@ -122,7 +131,6 @@ class EditEvent extends Component{
             opponent: this.state.opponent,
 
         }
-        console.log(event)
         axios.put('/api/events/update', event).then(res=>{
             if(res.status === 200){
                 toast.success('🦄 Event Updated', {
@@ -162,7 +170,7 @@ class EditEvent extends Component{
                     if(event._id === this.props.match.params.id){
                        
                         return(
-                            <form>
+                            <form key={event._id}>
                                 <label>Event</label>
                                 <select value={this.state.event} className="event-select browser-default" onChange={(e)=>{this.updateEvent(e.target.value)}}>
                                         <option value="">Select One</option> 
@@ -203,13 +211,35 @@ class EditEvent extends Component{
                                 <div>
                                     <input defaultValue={this.state.opponent} onChange={(e)=>{this.handleOpponentChange(e.target.value)}}></input>
                                 </div>
-                               
-                                <button onClick={(e)=>this.handleUpdate(e)}>Update</button>
-                                <Link to='/pageadmin/manageSchedule'>Cancel</Link>
+                                <label>Result</label>
+                                <select value={this.state.result} className="event-select browser-default" onChange={(e)=>{this.updateResult(e.target.value)}}>
+                                        <option value="">Select One</option> 
+                                        <option value="Win">Win</option>   
+                                        <option value="Loss">Loss</option>  
+                                         
+                                    </select> 
+                              
+                                <button className="waves effect waves-light amber lighten-2 btn" onClick={(e)=>this.handleUpdate(e)}>Update<i className="material-icons right">done</i></button>
+                                <Link className="waves effect waves-light red btn right-button" to='/pageadmin/manageSchedule'>Cancel<i className="material-icons right">clear</i></Link>
                             </form>
                         )
                     }
+                    return null;
                 })
+        }
+    }
+
+    renderAdmin(){
+        switch(this.props.user){
+            case null:
+            case false: 
+                return(<div>You must be an admin to view this page</div>)
+            default:
+                return(
+                    <div>
+                        {this.renderEditEvent()}
+                    </div>
+                )
         }
     }
     
@@ -217,7 +247,7 @@ class EditEvent extends Component{
         return(
             <div className="container">
                 <h2>Edit Event</h2>
-                {this.renderEditEvent()}
+                {this.renderAdmin()}
             </div>
         )
     }

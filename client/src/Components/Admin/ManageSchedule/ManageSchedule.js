@@ -3,12 +3,11 @@ import M from 'materialize-css';
 import {Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {toast} from 'react-toastify';
-import {fetchUser, fetchEvents} from '../../../actions'
+import {fetchUser, fetchEvents} from '../../../actions';
+import DateFormat from '../../Helpers/dateFormat';
 import '../Admin.css';
 import './ManageSchedule.css';
 import axios from 'axios';
-import Moment from 'moment';
-
 
 class ManageSchedule extends Component{
     constructor(props){
@@ -32,15 +31,6 @@ class ManageSchedule extends Component{
         let timeElements = document.querySelectorAll('.timepicker')
         M.Timepicker.init(timeElements);
     }
-
-    dateFormat(date){
-        return(
-            <div>
-                {Moment(date).format('MMMM Do YYYY')}
-            </div>
-        )
-    }
-
 
     onEventChange(e){
         this.setState({
@@ -144,24 +134,32 @@ class ManageSchedule extends Component{
             default:
                 return this.sortEvents(this.props.events).map(event =>{    
                     return(
-                        <div key={event._id}>
-                            <div>
+                        <tr key={event._id}>
+                            <td>
                                 {event.event}
-                            </div>
-                            <div>
+                            </td>
+                            {/* <td>
                                 {event.opponent || null}
-                            </div>
-                            <div>
-                                {this.dateFormat(event.date)}
-                            </div>
-                            <Link to={`/pageadmin/manageSchedule/edit/${event._id}`}>Edit</Link>
-                            <button onClick={()=>{this.handleDelete(event._id)}}>Delete</button>
-                        </div>
+                            </td> */}
+                            <td>
+                                <DateFormat date={event.date}/>
+                            </td>
+                            <td>
+                            <Link className="waves effect waves-light amber lighten-2 btn" to={`/pageadmin/manageSchedule/edit/${event._id}`}><i className="material-icons">edit</i></Link>
+                            </td>
+                            <td>
+                            <button className="waves effect waves-light red btn" onClick={()=>{this.handleDelete(event._id)}}><i className="material-icons">cancel</i></button>
+                            </td>
+                            
+                            
+                        </tr>
                     )
                 })
                 
         }
     }
+    
+
 
     renderAddNewSchedule(){
         switch(this.props.user){
@@ -206,7 +204,7 @@ class ManageSchedule extends Component{
                                 </div>                                
                             </form> 
                             <button onClick={(e)=>{this.onSubmit(e)}}>Submit</button>
-                            {this.renderEvents()}
+                            
                         </div>
                     )
                 }
@@ -226,11 +224,27 @@ class ManageSchedule extends Component{
                 </div>
                 <div>
                     {this.renderAddNewSchedule()}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Event</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody>
+                            {this.renderEvents()}
+                        </tbody>
+                    </table>
+                    
                 </div>
             </div>
         )
     }
 }
+
 
 function mapStateToProps({user, events}){
     return {user, events}

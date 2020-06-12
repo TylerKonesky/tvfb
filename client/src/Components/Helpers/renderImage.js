@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import Moment from 'moment';
+import React from 'react';
 
 function RenderImage(props) {
     const newString = props.image.split(',')

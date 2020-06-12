@@ -8,6 +8,7 @@ import Admin from './Components/Admin/Admin'
 import Coaches from './Components/Coaches/Coaches';
 import EditCoach from './Components/Admin/ManageCoaches/EditCoaches';
 import EditEvent from './Components/Admin/ManageSchedule/EditEvent';
+import Game from './Components/Schedule/Game';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import ManageCoaches from './Components/Admin/ManageCoaches/ManageCoaches';
@@ -24,6 +25,7 @@ function App() {
             <Header />
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/coaches" component={Coaches}></Route>
+            <Route path='/schedule/game/:id' component={Game}></Route>
             <Route exact path="/pageAdmin" component={Admin}></Route>
             <Route exact path="/pageAdmin/manageCoaches" component={ManageCoaches}></Route>
             <Route path="/pageAdmin/manageCoaches/edit/:id" component={EditCoach}></Route>

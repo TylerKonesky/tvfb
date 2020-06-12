@@ -9,6 +9,7 @@ const eventSchema = new Schema({
     description: String,
     opponent: {type: String, default: null},
     score: {type: String, default: null},
+    result: {type: String, default: null},
     summary: {type: String, default: null},
     mvp: {type: String, default: null},
     highlights: {type: String, default: null}

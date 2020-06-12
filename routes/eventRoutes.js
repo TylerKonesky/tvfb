@@ -21,7 +21,7 @@ module.exports = (app) => {
         }
     })
 
-    app.post('/api/events/addNewEvent', async (req, res) =>{
+    app.post('/api/events/addNewEvent', requireLogin, requireAdmin, async (req, res) =>{
         const {event, date, location, time, description} = req.body;
         try{
             const newEvent = new Event({
@@ -39,7 +39,7 @@ module.exports = (app) => {
         }
     })
 
-    app.put('/api/events/update', async (req, res) =>{
+    app.put('/api/events/update', requireLogin, requireAdmin, async (req, res) =>{
         console.log(req.body)
        try{
         const updateEvent = await Event.findByIdAndUpdate(req.body.id, req.body)
@@ -49,7 +49,7 @@ module.exports = (app) => {
        }
     })
 
-    app.delete('/api/events/delete/:id', async (req, res) =>{
+    app.delete('/api/events/delete/:id', requireLogin, requireAdmin, async (req, res) =>{
         try{
             const deleteEvent = await Event.findByIdAndDelete(req.params.id);
             const remainingEvents = await Event.find();

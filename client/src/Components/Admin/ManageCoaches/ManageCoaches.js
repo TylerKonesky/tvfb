@@ -62,10 +62,9 @@ class ManageCoaches extends Component{
             case false: 
                 return(<div>No Coaches Saved</div>);
             default:
-                console.log(this.props.coaches)
                 return this.props.coaches.map(coach =>{
                     return(
-                        <div className="row">
+                        <div key={coach._id} className="row">
                             <div className="col s12 m7">
                                 <div className="card card-size">
                                     <div className="card-image">
