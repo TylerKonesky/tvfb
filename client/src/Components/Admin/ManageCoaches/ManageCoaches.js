@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchCoaches, fetchUser} from '../../../actions';
+import RenderImage from '../../Helpers/renderImage';
 import './ManageCoaches.css';
 import '../Admin.css';
 import axios from 'axios';
@@ -45,12 +46,6 @@ class ManageCoaches extends Component{
         e.preventDefault();
         axios.post('/api/coaches/addNewCoach', {name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image})
     }
-    renderImage(image){
-        const newString = image.split(',');
-        return(
-            <img className="bio-image"src={`data:image/jpeg;base64, ${newString[1]}`} alt="coach"></img>
-        )
-    }
 
     deleteCoach(e, id){
         e.preventDefault();
@@ -74,7 +69,7 @@ class ManageCoaches extends Component{
                             <div className="col s12 m7">
                                 <div className="card card-size">
                                     <div className="card-image">
-                                        {this.renderImage(coach.image)}
+                                        <RenderImage image={coach.image} alt="coach"/>
                                     </div>
                                     <div className="card-content">
                                         <p>Name: {coach.name}</p>

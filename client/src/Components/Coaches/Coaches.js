@@ -1,19 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {fetchCoaches} from '../../actions'
+import {fetchCoaches} from '../../actions';
+import RenderImage from '../Helpers/renderImage';
 import './Coaches.css';
 
 class Coaches extends Component{
   
     componentDidMount(){
         this.props.fetchCoaches();
-    }
-
-    renderImage(image){
-        const newString = image.split(',');
-        return(
-            <img className="bio-image activator image-size"src={`data:image/jpeg;base64, ${newString[1]}`} alt="coach"></img>
-        )
     }
 
     renderCoaches(){
@@ -26,7 +20,7 @@ class Coaches extends Component{
                     return(
                         <div className="card card-width">
                             <div className="card-image waves-effect waves-block waves-light"> 
-                                {this.renderImage(coach.image)}
+                                <RenderImage image={coach.image} alt="coach"/>
                             </div>      
                             <div className="card-content">
                                 <span className="card-title activator grey-text text-darken-4">{coach.name}<i className="material-icons right">more_vert</i></span>

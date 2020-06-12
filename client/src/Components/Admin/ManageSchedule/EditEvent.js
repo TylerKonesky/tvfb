@@ -134,6 +134,7 @@ class EditEvent extends Component{
                     draggable: true,
                     progress: undefined,
                     });
+               
             }else{
                 toast.error('🦄 ERROR', {
                     position: "top-right",

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchEvents} from '../../actions';
+import DateFormat from '../Helpers/dateFormat'
 import Moment from 'moment';
 import './Schedule.css';
 
@@ -20,14 +21,6 @@ class Schedule extends Component{
         return sortedEvents;
     }
 
-    dateFormat(date){
-        return(
-            <div>
-                {Moment(date).format('MMMM Do YYYY')}
-            </div>
-        )
-    }
-
     renderOtherEvents(){
         switch(this.props.events){
             case null:
@@ -42,7 +35,7 @@ class Schedule extends Component{
                                 <tr key={event._id}>
                                     
                                     <td>
-                                        {this.dateFormat(event.date)}
+                                        <DateFormat date={event.date}/>
                                     </td>
                                     <td>
                                         {event.time}
@@ -81,7 +74,7 @@ class Schedule extends Component{
                             return(
                                 <tr key={event._id}>
                                     <td>
-                                        {this.dateFormat(event.date)}
+                                        <DateFormat date={event.date}/>
                                     </td>
                                     <td>
                                         {event.time}
