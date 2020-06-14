@@ -5,9 +5,11 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-require('./models/User');
+
 require('./models/Coach');
 require('./models/Event');
+require('./models/Sponsor');
+require('./models/User');
 
 require('./services/passport');
 
@@ -31,6 +33,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app)
 require('./routes/coachRoutes')(app)
 require('./routes/eventRoutes')(app)
+require('./routes/sponsorRoutes')(app)
 
 
 if(process.env.NODE_ENV === 'production'){

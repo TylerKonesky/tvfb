@@ -8,6 +8,7 @@ import Admin from './Components/Admin/Admin'
 import Coaches from './Components/Coaches/Coaches';
 import EditCoach from './Components/Admin/ManageCoaches/EditCoaches';
 import EditEvent from './Components/Admin/ManageSchedule/EditEvent';
+import EditSponsors from './Components/Admin/ManageSponsors/EditSponsors';
 import Game from './Components/Schedule/Game';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -31,7 +32,8 @@ function App() {
             <Route path="/pageAdmin/manageCoaches/edit/:id" component={EditCoach}></Route>
             <Route exact path="/pageAdmin/manageSchedule" component={ManageSchedule}></Route>
             <Route path="/pageAdmin/manageSchedule/edit/:id" component={EditEvent}></Route>
-            <Route path="/pageAdmin/manageSponsors" component={ManageSponsors}></Route>
+            <Route exact path="/pageAdmin/manageSponsors" component={ManageSponsors}></Route>
+            <Route path="/pageAdmin/manageSponsors/edit/:id" component={EditSponsors}></Route>
             <Route exact path="/schedule" component={Schedule}></Route>
         </div>
       </BrowserRouter>

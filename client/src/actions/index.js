@@ -17,6 +17,6 @@ export const fetchEvents = () => async dispatch =>{
 }
 
 export const fetchSponsors = () => async dispatch =>{
-    const res = await axios.get('/api/getSponsors')
+    const res = await axios.get('/api/sponsors/getAllSponsors')
     dispatch({type: FETCH_SPONSORS, payload: res.data})
 }
