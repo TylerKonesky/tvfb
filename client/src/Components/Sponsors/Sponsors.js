@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchSponsors} from '../../actions';
-
 import RenderImage from '../Helpers/renderImage';
+import './Sponsors.css';
 
 class Sponsors extends Component{
     componentDidMount(){
@@ -13,7 +13,7 @@ class Sponsors extends Component{
         if(website !== null){
             return(
                 <div className="card-action">
-                    <a  href={`http://${website}`} target="_blank">View Website</a>
+                    <a  href={website} target="_blank" rel="noopener noreferrer">View Website</a>
                 </div>
             )
         }
@@ -27,10 +27,9 @@ class Sponsors extends Component{
             case false: 
                 return(<div>No Sponsors Found</div>)
             default:
-                console.log(this.props.sponsors)
                 return this.props.sponsors.map(sponsor => {
                     return(
-                        <div className="card sticky-action">
+                        <div className="card sticky-action card-width">
                             <div className="card-image waves-effect waves-block waves-light">
                                 <RenderImage image={sponsor.image}/>
                             </div>   
@@ -53,8 +52,11 @@ class Sponsors extends Component{
     render(){
         return(
             <div className="container">
-                This is the sponsors page
-                {this.renderSponsors()}
+                <h2 className="sponsors-header">Sponsors</h2>
+                <div className="grid">
+                    {this.renderSponsors()} 
+                </div>
+                
             </div>
         )
     }

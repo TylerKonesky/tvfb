@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 import {fetchUser, fetchSponsors} from '../../../actions';
 import RenderImage from '../../Helpers/renderImage';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 import '../Admin.css';
 import './ManageSponsors.css';
+
 
 class ManageSponsors extends Component{
     constructor(props){
@@ -68,18 +70,61 @@ class ManageSponsors extends Component{
                 company: this.state.company,
                 description: this.state.description,
                 promoCode: this.state.promoCode,
-                image: this.state.image
+                image: this.state.image,
+                website: this.state.website
         }).then(res =>{
-            console.log(res.data)
-            this.props.fetchSponsors();
+            if(res.status === 200){
+                toast.success('🦄 Sponsor Added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                this.props.fetchSponsors();
+            }else{
+                toast.error('🦄 Sponsor NOT added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            
         })
     }
 
     handleDeleteSponsor(e, id){
         e.preventDefault();
         axios.delete(`/api/sponsors/deleteSponsor/${id}`).then(res =>{
-            console.log('Deleted Sponsor')
-            this.props.fetchSponsors();
+            if(res.status === 200){
+                toast.success('🦄 Sponsor Deleted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                    this.props.fetchSponsors();
+            }else{
+                toast.error('🦄 Sponsor NOT Deleted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            
         })
     }
 
@@ -93,16 +138,16 @@ class ManageSponsors extends Component{
 
                 return this.props.sponsors.map(sponsor =>{
                     return(
-                        <div key={sponsor._id}>
-                            <div>
+                        <div key={sponsor._id} className="sponsor">
+                            <div className="sponsor-name">
                                 {sponsor.company}
                             </div>
-                            <div>
+                            <div className="sponsor-image">
                                 <RenderImage image={sponsor.image} alt={sponsor.company}/>
                             </div>
-                            <div>
-                                <Link to={`/pageadmin/manageSponsors/edit/${sponsor._id}`}>Update</Link>
-                                <button onClick={(e)=>this.handleDeleteSponsor(e, sponsor._id)}>Delete</button>
+                            <div className="sponsor-buttons-wrapper">
+                                <Link className="waves-effect waves-light btn edit" to={`/pageadmin/manageSponsors/edit/${sponsor._id}`}>Update <i className="material-icons right">edit</i></Link>
+                                <button className="waves-effect waves-light btn delete "onClick={(e)=>this.handleDeleteSponsor(e, sponsor._id)}>Delete<i className="material-icons right">delete</i></button>
                                 
                             </div>
                         </div>
@@ -120,6 +165,7 @@ class ManageSponsors extends Component{
                     <Link className="header-link active" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
                     <Link className="header-link" to="/pageadmin/manageSchedule">Manage Schedule</Link>
                 </div>
+                <h2>Add New Sponsor</h2>
                 <form>
                     <label>Company</label>
                     <input onChange={(e)=>{this.onCompanyChange(e.target.value)}}></input>
@@ -139,9 +185,9 @@ class ManageSponsors extends Component{
                     <label>Logo</label>
                     <input type="file"  onChange={(e)=>{this.fileUploader(e)}}></input>
 
-                    <button onClick={(e)=>{this.handleAddNewSponsor(e)}}>Add</button>
+                    <button className="waves-effect waves-light btn right" onClick={(e)=>{this.handleAddNewSponsor(e)}}>Add<i className="material-icons right">add</i></button>
                 </form>
-                <div>
+                <div className="sponsors-wrapper">
                     {this.renderSponsors()}
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {toast} from 'react-toastify';
 import axios from 'axios'
 
 class EditCoach extends Component{
@@ -33,9 +34,25 @@ class EditCoach extends Component{
         e.preventDefault();
         axios.put(`/api/coaches/updateCoach`, {id: this.state.id, name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image}).then(res =>{
             if(res.status === 200){
-                console.log('Success')
+                toast.success('🦄 Coach Updated', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             }else{
-                console.log('failure')
+                toast.success('🦄 Coach NOT Updated', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             }
         })
     }

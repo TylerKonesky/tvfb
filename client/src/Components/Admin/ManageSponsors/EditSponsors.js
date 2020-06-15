@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {toast} from 'react-toastify';
+import {Link} from 'react-router-dom';
 import RenderImage from '../../Helpers/renderImage';
+import './EditSponsors.css'
 
 
 class EditSponsor extends Component{
@@ -81,7 +84,27 @@ class EditSponsor extends Component{
                 image: this.state.image,
                 website: this.state.website
         }).then(res =>{
-            console.log(res.data)
+            if(res.status === 200){
+                toast.success('🦄 Sponsor Updated', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }else{
+                toast.error('🦄 Sponsor NOT Updated', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
         })
     }
 
@@ -114,14 +137,18 @@ class EditSponsor extends Component{
                     </div>
                     
 
-                    <button onClick={(e)=>{this.handleUpdateSponsor(e)}}>Update</button>
+                    <div className="button-wrapper">
+                    <button className="waves-effect waves-light btn update"onClick={(e)=>{this.handleUpdateSponsor(e)}}>Update<i className="material-icons right">add</i></button>
+                    <Link className="waves-effect waves-light btn delete"to="/pageadmin/manageSponsors">Cancel<i className="material-icons right"></i></Link>
+                    </div>
+                 
                 </form>
         )
     }
     render(){
         return(
             <div className="container">
-                This is the edit sponsor page
+                <h2>Edit Sponsor</h2>
                 {this.renderEditableSponsor()}
             </div>
             

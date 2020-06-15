@@ -1,0 +1,41 @@
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.sponsors-header{
+    text-align: center;
+    text-decoration: underline;
+}
+.card-width{
+    width: 400px;
+}
+
+.image-size{
+    max-width: 400px;
+    max-height: 400px;
+}
+
+@media(max-width: 1750px){
+    .grid{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 1200px){
+    .grid{
+        grid-template-columns: 1fr;
+        align-self: center;
+        align-items: center;
+        align-content: center;
+    }
+}
+
+@media(max-width: 500px){
+    .card-width{
+        width: 325px
+    }
+    .image-size{
+        max-width: 325px;
+        max-height: 325px;
+    }
+}

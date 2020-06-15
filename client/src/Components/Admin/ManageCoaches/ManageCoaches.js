@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchCoaches, fetchUser} from '../../../actions';
 import RenderImage from '../../Helpers/renderImage';
+import {toast} from 'react-toastify';
 import './ManageCoaches.css';
 import '../Admin.css';
 import axios from 'axios';
@@ -44,14 +45,57 @@ class ManageCoaches extends Component{
 
     addNewCoach(e){
         e.preventDefault();
-        axios.post('/api/coaches/addNewCoach', {name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image})
+        axios.post('/api/coaches/addNewCoach', {name: this.state.name, position: this.state.position, bio: this.state.bio, image: this.state.image}).then(res =>{
+            if(res.status === 200){
+                toast.success('🦄 Coach Added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }else{
+                toast.error('🦄 Coach NOT Added', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+        })
     }
 
     deleteCoach(e, id){
         e.preventDefault();
         axios.delete(`/api/coaches/deleteCoach/${id}`).then(res =>{
-            console.log('Coach Deleted');
-            this.props.fetchCoaches();
+            if(res.status === 200){
+                toast.success('🦄 Coach Deleted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+                    this.props.fetchCoaches();
+            }else{
+                toast.error('🦄 Coach NOT Deleted', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
+            }
+            
         })
     }
 
