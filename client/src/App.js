@@ -16,6 +16,7 @@ import ManageCoaches from './Components/Admin/ManageCoaches/ManageCoaches';
 import ManageSchedule from './Components/Admin/ManageSchedule/ManageSchedule'
 import ManageSponsors from './Components/Admin/ManageSponsors/ManageSponsors';
 import Schedule from './Components/Schedule/Schedule';
+import Sponsors from './Components/Sponsors/Sponsors';
 
 toast.configure()
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="/pageAdmin/manageSponsors" component={ManageSponsors}></Route>
             <Route path="/pageAdmin/manageSponsors/edit/:id" component={EditSponsors}></Route>
             <Route exact path="/schedule" component={Schedule}></Route>
+            <Route exact path="/sponsors" component={Sponsors}></Route>
         </div>
       </BrowserRouter>
     </div>

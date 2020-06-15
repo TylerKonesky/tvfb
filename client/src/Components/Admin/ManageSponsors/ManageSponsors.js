@@ -15,7 +15,8 @@ class ManageSponsors extends Component{
             location: '',
             description: '',
             promoCode: '',
-            image: ''
+            image: '',
+            website: ''
         }
     }
 
@@ -52,6 +53,14 @@ class ManageSponsors extends Component{
             promoCode: e
         })
     }
+
+    onWebsiteChange(e){
+        this.setState({
+            website: e
+        })
+    }
+
+    
     handleAddNewSponsor(e){
         e.preventDefault();
         axios.post('/api/sponsors/addNewSponsor', {
@@ -123,6 +132,9 @@ class ManageSponsors extends Component{
 
                     <label>Promo Code</label>
                     <input  onChange={(e)=>{this.onPromoCodeChange(e.target.value)}}></input>
+
+                    <label>Website URL</label>
+                    <input  onChange={(e)=>{this.onWebsiteChange(e.target.value)}}></input>
 
                     <label>Logo</label>
                     <input type="file"  onChange={(e)=>{this.fileUploader(e)}}></input>

@@ -6,7 +6,8 @@ const sponsorSchema = new Schema({
     image: {type: String, default: null},
     location: {type: String, default: null},
     description: {type: String, default: null},
-    promoCode: {type: String, default: null}
+    promoCode: {type: String, default: null},
+    website: {type: String, default: null}
     
 })
 

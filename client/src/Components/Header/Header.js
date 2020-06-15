@@ -35,6 +35,7 @@ class Header extends Component{
                             {this.renderAdminHeader()}
                             <li><Link to="/coaches">Coaches</Link></li>
                             <li><Link to="/schedule">Schedule</Link></li>
+                            <li><Link to="/sponsors">Sponsors</Link></li>
                             <li><Link to="live">Live</Link></li>
                         </ul>
                     
@@ -48,7 +49,8 @@ class Header extends Component{
                                 {this.renderAdminHeader()}
                                 <li><Link to="/coaches">Coaches</Link></li>
                                 <li><Link to="/schedule">Schedule</Link></li>
-                                <li><Link to="live">Live</Link></li>
+                                <li><Link to="/sponsors">Sponsors</Link></li>
+                                <li><Link to="/live">Live</Link></li>
                             </ul> 
                     </div>
                 </nav>
