@@ -1,0 +1,13 @@
+.body-size{
+    display: flex;
+    min-height: calc(100vh - 235px);
+    flex-direction: column;
+    /* background-color: #fafafa; */
+}
+
+@media (max-width: 600px){
+    .body-size{
+        min-height: calc(100vh - 220px)
+    }
+    
+}

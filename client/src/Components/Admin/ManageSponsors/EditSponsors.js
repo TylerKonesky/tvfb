@@ -9,6 +9,7 @@ import Loading from '../../ReusableComponents/Loading';
 import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
 import LoggedIn from '../../ReusableComponents/LoggedIn';
 import './EditSponsors.css'
+import '../../../bodysize.css';
 
 
 class EditSponsor extends Component{
@@ -167,7 +168,7 @@ class EditSponsor extends Component{
     }
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 <h2>Edit Sponsor</h2>
                 {this.renderAdmin()}
             </div>

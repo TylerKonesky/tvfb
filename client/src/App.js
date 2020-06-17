@@ -9,6 +9,7 @@ import Coaches from './Components/Coaches/Coaches';
 import EditCoach from './Components/Admin/ManageCoaches/EditCoaches';
 import EditEvent from './Components/Admin/ManageSchedule/EditEvent';
 import EditSponsors from './Components/Admin/ManageSponsors/EditSponsors';
+import Footer from './Components/Footer/Footer';
 import Game from './Components/Schedule/Game';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -39,6 +40,7 @@ function App() {
             <Route exact path="/schedule" component={Schedule}></Route>
             <Route exact path="/sponsors" component={Sponsors}></Route>
             <Route exact path="/live/:id" component={LiveStream}></Route>
+            <Footer />
         </div>
       </BrowserRouter>
     </div>

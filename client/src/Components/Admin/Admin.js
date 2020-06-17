@@ -6,6 +6,7 @@ import MustBeAdmin from '../ReusableComponents/MustBeAdmin';
 import Loading from '../ReusableComponents/Loading';
 import LoggedIn from '../ReusableComponents/LoggedIn';
 import './Admin.css';
+import '../../bodysize.css'
 
 class Admin extends Component{
     componentDidMount(){
@@ -37,7 +38,7 @@ class Admin extends Component{
     }
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 {this.renderAccess()}
             </div>
         )

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchSponsors} from '../../actions';
 import RenderImage from '../Helpers/renderImage';
 import './Sponsors.css';
+import '../../bodysize.css';
 
 class Sponsors extends Component{
     componentDidMount(){
@@ -51,7 +52,7 @@ class Sponsors extends Component{
     }
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 <h2 className="sponsors-header">Sponsors</h2>
                 <div className="grid">
                     {this.renderSponsors()} 

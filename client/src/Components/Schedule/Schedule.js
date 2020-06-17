@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {fetchEvents} from '../../actions';
 import DateFormat from '../Helpers/dateFormat'
 import './Schedule.css';
+import '../../bodysize.css';
 
 class Schedule extends Component{
     constructor(props){
@@ -103,7 +104,7 @@ class Schedule extends Component{
     }
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 <div className="header-buttons-wrapper">
                     <button className={this.state.games ? `waves-effect waves-light btn active` : `waves-effect waves-light btn inactive`} onClick={()=>this.setState({games: true})}>Games</button>
                     <button className={this.state.games ? `waves-effect waves-light btn right-button inactive` : `waves-effect waves-light btn right-button active`}  onClick={()=>this.setState({games: false})}>Practice</button>

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchEvents} from '../../actions';
-import './Game.css'
+import './Game.css';
+import '../../bodysize.css';
 
 class Game extends Component{
     componentDidMount(){
@@ -37,7 +38,7 @@ class Game extends Component{
     }
     render(){
         return(
-        <div className="container">
+        <div className="container body-size">
             {this.renderGame()}    
         </div>
         )

@@ -7,6 +7,7 @@ import {fetchUser, fetchEvents} from '../../../actions';
 import DateFormat from '../../Helpers/dateFormat';
 import '../Admin.css';
 import './ManageSchedule.css';
+import '../../../bodysize.css';
 import axios from 'axios';
 
 class ManageSchedule extends Component{
@@ -216,7 +217,7 @@ class ManageSchedule extends Component{
    
     render(){
         return(
-            <div className="container"> 
+            <div className="container body-size"> 
                 <div>
                     <Link className="header-link" to="/pageadmin/manageCoaches">Manage Coaches</Link>
                     <Link className="header-link" to="/pageadmin/manageSponsors">Manage Sponsors</Link>

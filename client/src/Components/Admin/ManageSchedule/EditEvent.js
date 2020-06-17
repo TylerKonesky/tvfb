@@ -6,6 +6,7 @@ import M from 'materialize-css';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import './EditEvent.css';
+import '../../../bodysize.css';
 
 class EditEvent extends Component{
     constructor(props){
@@ -245,7 +246,7 @@ class EditEvent extends Component{
     
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 <h2>Edit Event</h2>
                 {this.renderAdmin()}
             </div>

@@ -6,6 +6,7 @@ import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
 import LoggedIn from '../../ReusableComponents/LoggedIn';
 import {connect} from 'react-redux';
 import {fetchUser} from '../../../actions';
+import '../../../bodysize.css';
 
 class EditCoach extends Component{
     constructor(props){
@@ -136,7 +137,7 @@ class EditCoach extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 Edit this coach....
                 {this.renderAdmin()}
             </div>

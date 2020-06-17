@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {fetchCoaches} from '../../actions';
 import RenderImage from '../Helpers/renderImage';
 import './Coaches.css';
+import '../../bodysize.css';
 
 class Coaches extends Component{
   
@@ -40,7 +41,7 @@ class Coaches extends Component{
 
     render(){
         return(
-            <div className="container page-wrapper">
+            <div className="container page-wrapper body-size">
                 <h1 className="page-title">Coaches</h1>
                 <div className="coaches-grid">
                     {this.renderCoaches()}

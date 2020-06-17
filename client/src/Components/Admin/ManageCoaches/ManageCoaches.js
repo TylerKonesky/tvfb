@@ -9,6 +9,7 @@ import LoggedIn from '../../ReusableComponents/LoggedIn';
 import {toast} from 'react-toastify';
 import './ManageCoaches.css';
 import '../Admin.css';
+import '../../../bodysize.css';
 import axios from 'axios';
 
 class ManageCoaches extends Component{
@@ -188,7 +189,7 @@ class ManageCoaches extends Component{
 
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 {this.renderAccess()}
             </div>
         )

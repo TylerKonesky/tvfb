@@ -10,6 +10,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import '../Admin.css';
 import './ManageSponsors.css';
+import '../../../bodysize.css';
 
 
 class ManageSponsors extends Component{
@@ -211,7 +212,7 @@ class ManageSponsors extends Component{
  
     render(){
         return(
-            <div className="container">
+            <div className="container body-size">
                 <div>
                     <Link className="header-link" to="/pageadmin/manageCoaches">Manage Coaches</Link>
                     <Link className="header-link active" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
