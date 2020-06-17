@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchUser} from '../../actions'
+import MustBeAdmin from '../ReusableComponents/MustBeAdmin';
+import Loading from '../ReusableComponents/Loading';
+import LoggedIn from '../ReusableComponents/LoggedIn';
 import './Admin.css';
 
 class Admin extends Component{
@@ -12,9 +15,9 @@ class Admin extends Component{
     renderAccess(){
         switch(this.props.user){
             case null:
-                return;
+                return <Loading />;
             case false: 
-                return(<div>You must be logged in to view this page</div>)
+                return <LoggedIn />;
             default:
                 if(this.props.user.userType === 'admin'){
                     return (
@@ -28,7 +31,7 @@ class Admin extends Component{
                         </div>
                     )
                 }else{
-                    return(<div>You must be an admin to view this page</div>)
+                    return <MustBeAdmin />
                 }
         }
     }

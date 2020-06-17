@@ -12,6 +12,7 @@ import EditSponsors from './Components/Admin/ManageSponsors/EditSponsors';
 import Game from './Components/Schedule/Game';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
+import LiveStream from './Components/LiveStream/LiveStream';
 import ManageCoaches from './Components/Admin/ManageCoaches/ManageCoaches';
 import ManageSchedule from './Components/Admin/ManageSchedule/ManageSchedule'
 import ManageSponsors from './Components/Admin/ManageSponsors/ManageSponsors';
@@ -37,6 +38,7 @@ function App() {
             <Route path="/pageAdmin/manageSponsors/edit/:id" component={EditSponsors}></Route>
             <Route exact path="/schedule" component={Schedule}></Route>
             <Route exact path="/sponsors" component={Sponsors}></Route>
+            <Route exact path="/live/:id" component={LiveStream}></Route>
         </div>
       </BrowserRouter>
     </div>

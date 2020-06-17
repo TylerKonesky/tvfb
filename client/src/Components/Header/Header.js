@@ -36,7 +36,7 @@ class Header extends Component{
                             <li><Link to="/coaches">Coaches</Link></li>
                             <li><Link to="/schedule">Schedule</Link></li>
                             <li><Link to="/sponsors">Sponsors</Link></li>
-                            <li><Link to="live">Live</Link></li>
+                            <li><Link to="/live/tvillefootball">Live</Link></li>
                         </ul>
                     
                     </div>
@@ -50,7 +50,7 @@ class Header extends Component{
                                 <li><Link to="/coaches">Coaches</Link></li>
                                 <li><Link to="/schedule">Schedule</Link></li>
                                 <li><Link to="/sponsors">Sponsors</Link></li>
-                                <li><Link to="/live">Live</Link></li>
+                                <li><Link to="/live/tvillefootball">Live</Link></li>
                             </ul> 
                     </div>
                 </nav>

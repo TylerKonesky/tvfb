@@ -1,6 +1,11 @@
 import React, {Component} from 'react';
 import {toast} from 'react-toastify';
-import axios from 'axios'
+import axios from 'axios';
+import Loading from '../../ReusableComponents/Loading';
+import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
+import LoggedIn from '../../ReusableComponents/LoggedIn';
+import {connect} from 'react-redux';
+import {fetchUser} from '../../../actions';
 
 class EditCoach extends Component{
     constructor(props){
@@ -15,6 +20,7 @@ class EditCoach extends Component{
     }
 
     componentDidMount(){
+        this.props.fetchUser();
         axios.get(`/api/coaches/getOneCoach/${this.props.match.params.id}`).then(res =>{
             this.setCoach(res.data)
         })
@@ -83,10 +89,26 @@ class EditCoach extends Component{
         )
     }
 
+    renderAdmin(){
+        switch(this.props.user){
+            case null:
+                return <Loading />
+            case false:
+                return <LoggedIn />
+            default:
+                if(this.props.user.userType === 'admin'){
+                    return this.renderCoach();
+                }else{
+                    return <MustBeAdmin />
+                }
+
+        }
+    }
+
     renderCoach(){
         switch(this.state.name){
             case '':
-                return(<div>Loading...</div>);
+                return <Loading />;
             default:
                 return(
                     <form>
@@ -108,19 +130,22 @@ class EditCoach extends Component{
                             {this.state.bio !== '' && this.state.name !== '' && this.state.image !== '' && this.state.position !== '' ? <button className="waves effect waves-light btn right" onClick={(e)=>this.updateCoach(e)}>Update<i className="material-icons right">add</i></button> : null} 
                         </div>
                     </form>
-                )
-                
-                    
+                )          
         }
     }
+
     render(){
         return(
             <div className="container">
                 Edit this coach....
-                {this.renderCoach()}
+                {this.renderAdmin()}
             </div>
         )
     }
 }
 
-export default EditCoach
+function mapStateToProps({user}){
+    return {user}
+}
+
+export default connect(mapStateToProps, {fetchUser})(EditCoach)

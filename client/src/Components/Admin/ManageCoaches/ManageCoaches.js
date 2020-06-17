@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchCoaches, fetchUser} from '../../../actions';
 import RenderImage from '../../Helpers/renderImage';
+import Loading from '../../ReusableComponents/Loading';
+import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
+import LoggedIn from '../../ReusableComponents/LoggedIn';
 import {toast} from 'react-toastify';
 import './ManageCoaches.css';
 import '../Admin.css';
@@ -102,7 +105,7 @@ class ManageCoaches extends Component{
     renderCoaches(){
         switch(this.props.coaches){
             case null:
-                return(<div>Loading...</div>);
+                return <Loading />;
             case false: 
                 return(<div>No Coaches Saved</div>);
             default:
@@ -133,9 +136,9 @@ class ManageCoaches extends Component{
     renderAccess(){
         switch(this.props.user){
             case null:
-                return;
+                return <Loading />;
             case false: 
-                return(<div>You must be logged in to view this page</div>)
+                return <LoggedIn />
             default:
                 if(this.props.user.userType === 'admin'){
                     return (
@@ -144,7 +147,7 @@ class ManageCoaches extends Component{
                         </div>
                     )
                 }else{
-                    return(<div>You must be an admin to view this page</div>)
+                    return <MustBeAdmin />
                 }
         }
     }

@@ -4,6 +4,10 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import {Link} from 'react-router-dom';
 import RenderImage from '../../Helpers/renderImage';
+import {fetchUser} from '../../../actions';
+import Loading from '../../ReusableComponents/Loading';
+import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
+import LoggedIn from '../../ReusableComponents/LoggedIn';
 import './EditSponsors.css'
 
 
@@ -22,6 +26,7 @@ class EditSponsor extends Component{
     }
 
     componentDidMount(){
+        this.props.fetchUser();
         axios.get(`/api/sponsors/getOneSponsor/${this.props.match.params.id}`).then(res =>{
             this.setSponsor(res.data);
         })
@@ -108,6 +113,21 @@ class EditSponsor extends Component{
         })
     }
 
+    renderAdmin(){
+        switch(this.props.user){
+            case null:
+                return <Loading />;
+            case false: 
+                return <LoggedIn />;
+            default:
+                if(this.props.user.userType === 'admin'){
+                    return this.renderEditableSponsor()
+                }else{
+                    return <MustBeAdmin />
+                }
+        }   
+    }
+
     renderEditableSponsor(){
         return(
             <form>
@@ -149,11 +169,15 @@ class EditSponsor extends Component{
         return(
             <div className="container">
                 <h2>Edit Sponsor</h2>
-                {this.renderEditableSponsor()}
+                {this.renderAdmin()}
             </div>
             
         )
     }
 }
 
-export default connect()(EditSponsor)
+function mapStateToProps({user}){
+    return {user}
+}
+
+export default connect(mapStateToProps, {fetchUser})(EditSponsor)

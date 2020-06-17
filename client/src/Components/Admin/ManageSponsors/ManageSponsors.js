@@ -3,6 +3,9 @@ import {Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchUser, fetchSponsors} from '../../../actions';
 import RenderImage from '../../Helpers/renderImage';
+import Loading from '../../ReusableComponents/Loading';
+import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
+import LoggedIn from '../../ReusableComponents/LoggedIn';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import '../Admin.css';
@@ -155,18 +158,10 @@ class ManageSponsors extends Component{
                 })
         }
     }
- 
-
-    render(){
+    
+    renderAddSponsor(){
         return(
-            <div className="container">
-                <div>
-                    <Link className="header-link" to="/pageadmin/manageCoaches">Manage Coaches</Link>
-                    <Link className="header-link active" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
-                    <Link className="header-link" to="/pageadmin/manageSchedule">Manage Schedule</Link>
-                </div>
-                <h2>Add New Sponsor</h2>
-                <form>
+            <form>
                     <label>Company</label>
                     <input onChange={(e)=>{this.onCompanyChange(e.target.value)}}></input>
 
@@ -187,9 +182,43 @@ class ManageSponsors extends Component{
 
                     <button className="waves-effect waves-light btn right" onClick={(e)=>{this.handleAddNewSponsor(e)}}>Add<i className="material-icons right">add</i></button>
                 </form>
-                <div className="sponsors-wrapper">
-                    {this.renderSponsors()}
+        )
+    }
+
+    renderAdmin(){
+        switch(this.props.user){
+            case null:
+                return <Loading />
+            case false: 
+                return <LoggedIn />
+            default: 
+                if(this.props.user.userType === 'admin'){
+                    return (
+                        <div>
+                            <h2>Add New Sponsor</h2>
+                            {this.renderAddSponsor()}
+                            <div className="sponsors-wrapper">
+                                {this.renderSponsors()}
+                            </div>
+                        </div>
+                    )
+                        
+                }else{
+                    return <MustBeAdmin />
+                }
+        }
+    }
+ 
+    render(){
+        return(
+            <div className="container">
+                <div>
+                    <Link className="header-link" to="/pageadmin/manageCoaches">Manage Coaches</Link>
+                    <Link className="header-link active" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
+                    <Link className="header-link" to="/pageadmin/manageSchedule">Manage Schedule</Link>
                 </div>
+                
+                {this.renderAdmin()}
             </div>
         )
     }
