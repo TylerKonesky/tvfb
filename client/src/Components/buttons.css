@@ -1,0 +1,17 @@
+.delete-button{
+    background-color: red;
+    margin-left: 15px;
+}
+
+.update-button{
+    background-color: gold;
+}
+
+.cancel-button{
+    background-color: red;
+    margin-left: 15px;
+}
+
+.submit-button{
+    background-color: royalblue;
+}

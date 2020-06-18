@@ -7,6 +7,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import './EditEvent.css';
 import '../../../bodysize.css';
+import '../../buttons.css';
 
 class EditEvent extends Component{
     constructor(props){
@@ -218,10 +219,15 @@ class EditEvent extends Component{
                                         <option value="Win">Win</option>   
                                         <option value="Loss">Loss</option>  
                                          
-                                    </select> 
-                              
-                                <button className="waves effect waves-light amber lighten-2 btn" onClick={(e)=>this.handleUpdate(e)}>Update<i className="material-icons right">done</i></button>
-                                <Link className="waves effect waves-light red btn right-button" to='/pageadmin/manageSchedule'>Cancel<i className="material-icons right">clear</i></Link>
+                                </select> 
+
+                                <div className="buttons-wrapper">
+                                    <Link className="waves effect waves-light btn delete-button right" to='/pageadmin/manageSchedule'>Cancel<i className="material-icons right">clear</i></Link>
+                                    <button className="waves effect waves-light update-button btn right" onClick={(e)=>this.handleUpdate(e)}>Update<i className="material-icons right">done</i></button>
+                                </div>
+
+                                
+                                
                             </form>
                         )
                     }

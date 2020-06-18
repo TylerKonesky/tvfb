@@ -8,6 +8,7 @@ import DateFormat from '../../Helpers/dateFormat';
 import '../Admin.css';
 import './ManageSchedule.css';
 import '../../../bodysize.css';
+import '../../buttons.css';
 import axios from 'axios';
 
 class ManageSchedule extends Component{
@@ -146,10 +147,10 @@ class ManageSchedule extends Component{
                                 <DateFormat date={event.date}/>
                             </td>
                             <td>
-                            <Link className="waves effect waves-light amber lighten-2 btn" to={`/pageadmin/manageSchedule/edit/${event._id}`}><i className="material-icons">edit</i></Link>
+                            <Link className="waves effect waves-light btn update-button" to={`/pageadmin/manageSchedule/edit/${event._id}`}>Edit<i className="material-icons right">edit</i></Link>
                             </td>
                             <td>
-                            <button className="waves effect waves-light red btn" onClick={()=>{this.handleDelete(event._id)}}><i className="material-icons">cancel</i></button>
+                            <button className="waves effect waves-light delete-button btn" onClick={()=>{this.handleDelete(event._id)}}>Delete<i className="material-icons right">cancel</i></button>
                             </td>
                             
                             

@@ -10,6 +10,7 @@ import {toast} from 'react-toastify';
 import './ManageCoaches.css';
 import '../Admin.css';
 import '../../../bodysize.css';
+import '../../buttons.css';
 import axios from 'axios';
 
 class ManageCoaches extends Component{
@@ -124,8 +125,8 @@ class ManageCoaches extends Component{
                                         <p>Bio: {coach.bio}</p>
                                     </div>
                                     <div className="card-action button-wrappers">
-                                        <Link  to={`/pageadmin/manageCoaches/edit/${coach._id}`} className="waves-effect waves-light btn edit"><i className="material-icons">edit</i></Link>
-                                        <button className="waves-effect waves-light btn button-right delete" onClick={(e)=>{this.deleteCoach(e, coach._id)}} ><i className="material-icons">cancel</i></button>
+                                        <Link  to={`/pageadmin/manageCoaches/edit/${coach._id}`} className="waves-effect waves-light btn update-button">Edit<i className="material-icons right">edit</i></Link>
+                                        <button className="waves-effect waves-light btn button-right delete-button" onClick={(e)=>{this.deleteCoach(e, coach._id)}} >Delete<i className="material-icons right">cancel</i></button>
                                     </div>
                                 </div>
                             </div>

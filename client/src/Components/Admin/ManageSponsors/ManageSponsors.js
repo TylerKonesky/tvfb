@@ -11,6 +11,7 @@ import {toast} from 'react-toastify';
 import '../Admin.css';
 import './ManageSponsors.css';
 import '../../../bodysize.css';
+import '../../buttons.css';
 
 
 class ManageSponsors extends Component{
@@ -150,8 +151,8 @@ class ManageSponsors extends Component{
                                 <RenderImage image={sponsor.image} alt={sponsor.company}/>
                             </div>
                             <div className="sponsor-buttons-wrapper">
-                                <Link className="waves-effect waves-light btn edit" to={`/pageadmin/manageSponsors/edit/${sponsor._id}`}>Update <i className="material-icons right">edit</i></Link>
-                                <button className="waves-effect waves-light btn delete "onClick={(e)=>this.handleDeleteSponsor(e, sponsor._id)}>Delete<i className="material-icons right">delete</i></button>
+                                <Link className="waves-effect waves-light btn update-button" to={`/pageadmin/manageSponsors/edit/${sponsor._id}`}>Edit <i className="material-icons right">edit</i></Link>
+                                <button className="waves-effect waves-light btn delete-button "onClick={(e)=>this.handleDeleteSponsor(e, sponsor._id)}>Delete<i className="material-icons right">delete</i></button>
                                 
                             </div>
                         </div>

@@ -6,9 +6,8 @@
     max-width: 400px;
 }
 
-.delete{
-    margin-left: 10px;
-    background-color: red;
+.delete-button{
+    margin-left: 15px;
 }
 
 .card-size{

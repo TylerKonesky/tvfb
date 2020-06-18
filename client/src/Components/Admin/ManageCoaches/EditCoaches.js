@@ -6,7 +6,9 @@ import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
 import LoggedIn from '../../ReusableComponents/LoggedIn';
 import {connect} from 'react-redux';
 import {fetchUser} from '../../../actions';
+import {Link} from 'react-router-dom';
 import '../../../bodysize.css';
+import '../../buttons.css';
 
 class EditCoach extends Component{
     constructor(props){
@@ -128,7 +130,8 @@ class EditCoach extends Component{
                             {this.renderImage(this.state.image)}
                         </div>
                         <div>
-                            {this.state.bio !== '' && this.state.name !== '' && this.state.image !== '' && this.state.position !== '' ? <button className="waves effect waves-light btn right" onClick={(e)=>this.updateCoach(e)}>Update<i className="material-icons right">add</i></button> : null} 
+                            <Link to="/pageadmin/manageCoaches" className="waves-effect waves-light btn cancel-button right">Cancel<i className="material-icons right">cancel</i></Link>
+                            {this.state.bio !== '' && this.state.name !== '' && this.state.image !== '' && this.state.position !== '' ? <button className="waves effect waves-light btn update-button right" onClick={(e)=>this.updateCoach(e)}>Update<i className="material-icons right">add</i></button> : null} 
                         </div>
                     </form>
                 )          

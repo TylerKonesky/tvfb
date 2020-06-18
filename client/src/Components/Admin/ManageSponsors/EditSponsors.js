@@ -10,6 +10,7 @@ import MustBeAdmin from '../../ReusableComponents/MustBeAdmin';
 import LoggedIn from '../../ReusableComponents/LoggedIn';
 import './EditSponsors.css'
 import '../../../bodysize.css';
+import '../../buttons.css';
 
 
 class EditSponsor extends Component{
@@ -159,8 +160,9 @@ class EditSponsor extends Component{
                     
 
                     <div className="button-wrapper">
-                    <button className="waves-effect waves-light btn update"onClick={(e)=>{this.handleUpdateSponsor(e)}}>Update<i className="material-icons right">add</i></button>
-                    <Link className="waves-effect waves-light btn delete"to="/pageadmin/manageSponsors">Cancel<i className="material-icons right"></i></Link>
+                    <Link className="waves-effect waves-light btn delete-button right"to="/pageadmin/manageSponsors">Cancel<i className="material-icons right">cancel</i></Link>
+                    <button className="waves-effect waves-light btn update-button right"onClick={(e)=>{this.handleUpdateSponsor(e)}}>Update<i className="material-icons right">add</i></button>
+                    
                     </div>
                  
                 </form>
