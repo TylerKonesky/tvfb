@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTwitchEmbedVideo from "react-twitch-embed-video";
 import '../../bodysize.css';
 
 class LiveStream extends React.Component{
@@ -7,8 +8,8 @@ class LiveStream extends React.Component{
     
         return (
             <div className="container body-size">
-                <h1>Tavlorsville Football</h1>
-                <h5>Against Mountain View</h5>
+                <h2>Tavlorsville Football</h2>
+                <ReactTwitchEmbedVideo channel="teepee"/>
             </div>
         ) 
     }

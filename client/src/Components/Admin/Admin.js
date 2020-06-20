@@ -7,10 +7,38 @@ import Loading from '../ReusableComponents/Loading';
 import LoggedIn from '../ReusableComponents/LoggedIn';
 import './Admin.css';
 import '../../bodysize.css'
+import axios from 'axios';
 
 class Admin extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            storeURL: ''
+        }
+    }
     componentDidMount(){
         this.props.fetchUser();
+        axios.get('/api/storeURL').then(res =>{
+            this.setState({
+                storeURL: res.data
+            })
+        })
+    }
+
+    handleStoreURLChange(e){
+        this.setState({
+            storeURL: e
+        })
+    }
+
+    submitStoreURL(e){
+        axios.put('/api/storeURL/update', {url: this.state.storeURL}).then(res =>{
+            if(res.status === 200){
+                console.log("success")
+            }else{
+                console.log('failure')
+            }
+        })
     }
 
     renderAccess(){
@@ -27,7 +55,12 @@ class Admin extends Component{
                             <Link className="header-link" to="/pageadmin/manageSponsors">Manage Sponsors</Link>
                             <Link className="header-link" to="/pageadmin/manageSchedule">Manage Schedule</Link>
                             <div>
-                                {`Welcome, ${this.props.user.name}`}    
+                                {`Welcome, ${this.props.user.name}`}  
+                                {/* <div>
+                                    <label>Store URL</label>
+                                    <input type="text" defaultValue={this.state.storeURL} onChange={(e)=>{this.handleStoreURLChange(e.target.value)}}></input>
+                                    <button onClick={(e)=>{this.submitStoreURL(e)}}>Update</button>
+                                </div>   */}
                             </div>
                         </div>
                     )
