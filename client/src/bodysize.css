@@ -1,8 +1,14 @@
 .body-size{
     display: flex;
     min-height: calc(100vh - 235px);
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 15px;
     flex-direction: column;
-    /* background-color: #fafafa; */
+    background-color: #fbfbf8;
+    border: 1px solid lightgray;
+    
+    
 }
 
 @media (max-width: 600px){
