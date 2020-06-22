@@ -41,10 +41,10 @@ class Admin extends Component{
             case false:
                 return(null)
             default:
-                if(!this.props.store){
+                if(!this.props.store[0]){
                     return(
                     <div>
-                        <button className="waves-effect waves-light btn add-button" onClick={(e)=>{this.addStoreURL(e)}}>Add<i className="material-icons right"></i></button>
+                        <button className="waves-effect waves-light btn add-button" onClick={(e)=>{this.addStoreURL(e)}}>Add<i className="material-icons right">add</i></button>
                     </div>)
                 }
                 return(
@@ -127,7 +127,7 @@ class Admin extends Component{
                                 {`Welcome, ${this.props.user.name}`}  
                                 <div>
                                     <label>Store URL</label>
-                                    <input type="text" defaultValue={this.state.storeURL !== '' ? this.state.storeURL.storeURL : ''} onChange={(e)=>{this.handleStoreURLChange(e.target.value)}}></input>
+                                    <input type="text" defaultValue={this.state.storeURL ? this.state.storeURL.storeURL : ''} onChange={(e)=>{this.handleStoreURLChange(e.target.value)}}></input>
                                     
                                     {this.addNewStore()}
                                 </div>  

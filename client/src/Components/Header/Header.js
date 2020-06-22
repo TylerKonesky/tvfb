@@ -32,12 +32,17 @@ class Header extends Component{
             case false: 
                 return null
             default:
-                if(!this.props.store[0].storeURL){
-                    return null;
+                switch(this.props.store[0]){
+                    case null:
+                    case undefined:
+                        return null;
+                    default:
+                        return(
+                            <li><a href={this.props.store[0].storeURL || null} target="_blank" rel="noopener noreferrer">Store</a></li>
+                        )
+
                 }
-                return(
-                    <li><a href={this.props.store[0].storeURL} target="_blank" rel="noopener noreferrer">Store</a></li>
-                )
+                
         }
     }
     render(){
