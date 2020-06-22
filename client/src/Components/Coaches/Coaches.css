@@ -1,10 +1,10 @@
 .card-width{
-    max-width: 400px;
+    max-width: 400px !important;
 }
 
-.image-size{
-    max-height: 625px;
-    max-width: 400px;
+.card-image img{
+    max-height: 1000px !important;
+    width: 400px !important;
 }
 
 .page-title{

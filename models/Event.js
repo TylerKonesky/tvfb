@@ -11,7 +11,8 @@ const eventSchema = new Schema({
     score: {type: String, default: null},
     result: {type: String, default: null},
     summary: {type: String, default: null},
-    mvp: {type: String, default: null},
+    omvp: {type: String, default: null},
+    dmvp: {type: String, default: null},
     highlights: {type: String, default: null}
     
 })

@@ -22,7 +22,8 @@ class EditEvent extends Component{
             description: '',
             score: '',
             summary: '',
-            mvp: ''
+            omvp: '',
+            dmvp: ''
 
         }
     }
@@ -53,7 +54,8 @@ class EditEvent extends Component{
             description: event.description,
             score: event.score,
             summary: event.summary,
-            mvp: event.mvp
+            omvp: event.omvp,
+            dmvp: event.dmvp
         })
     }
 
@@ -82,7 +84,6 @@ class EditEvent extends Component{
     }
 
     handleTimeChange(e){
-        console.log(e)
         this.setState({
             time: e
         })
@@ -112,9 +113,14 @@ class EditEvent extends Component{
         })
     }
 
-    handleMVPChange(e){
+    handleOMVPChange(e){
         this.setState({
-            mvp: e
+            omvp: e
+        })
+    }
+    handleDMVPChange(e){
+        this.setState({
+            dmvp: e
         })
     }
     handleUpdate(e){
@@ -129,7 +135,8 @@ class EditEvent extends Component{
             description: this.state.description,
             score: this.state.score,
             summary: this.state.summary,
-            mvp: this.state.mvp,
+            omvp: this.state.omvp,
+            dmvp: this.state.dmvp,
             opponent: this.state.opponent,
 
         }
@@ -205,9 +212,13 @@ class EditEvent extends Component{
                                 <div>
                                     <textarea  defaultValue={this.state.summary} onChange={(e)=>{this.handleSummaryChange(e.target.value)}}></textarea >
                                 </div>
-                                <label>MVP</label>
+                                <label>Offensive MVP</label>
                                 <div>
-                                    <textarea defaultValue={this.state.mvp} onChange={(e)=>{this.handleMVPChange(e.target.value)}}></textarea >
+                                    <textarea defaultValue={this.state.omvp} onChange={(e)=>{this.handleOMVPChange(e.target.value)}}></textarea >
+                                </div>
+                                <label>Defensive MVP</label>
+                                <div>
+                                    <textarea defaultValue={this.state.dmvp} onChange={(e)=>{this.handleDMVPChange(e.target.value)}}></textarea >
                                 </div>
                                 <label>Opponent</label>
                                 <div>

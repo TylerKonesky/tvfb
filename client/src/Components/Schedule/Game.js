@@ -25,7 +25,8 @@ class Game extends Component{
                             </h2>
                             <div>Score: {event.score} Result: {event.result}</div>
                             <div className="event-mvp">
-                                MVP: {event.mvp}
+                                Offenseive MVP: {event.omvp}
+                                Dffenseive MVP: {event.dmvp}
                             </div>
                             <div className="event-summary">
                                 <label>Summary</label>

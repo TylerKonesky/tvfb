@@ -61,6 +61,7 @@ class ManageCoaches extends Component{
                     draggable: true,
                     progress: undefined,
                     });
+                    this.props.fetchCoaches();
             }else{
                 toast.error('🦄 Coach NOT Added', {
                     position: "top-right",
