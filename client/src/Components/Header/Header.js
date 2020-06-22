@@ -32,7 +32,7 @@ class Header extends Component{
             case false: 
                 return null
             default:
-                if(this.props.store[0].storeURL === null){
+                if(!this.props.store[0].storeURL){
                     return null;
                 }
                 return(
