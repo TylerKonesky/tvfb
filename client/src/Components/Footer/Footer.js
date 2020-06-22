@@ -9,10 +9,10 @@ class Footer extends Component{
             <footer className="page-footer footer-background ">
             <div className="container">
               <div className="row">
-                <div class="col l6 s12">
+                <div className="col l6 s12">
                   {/* <h5 class="white-text">Footer Content</h5> */}
-                  <p class="grey-text text-lighten-4">5225 S Redwood Rd, Taylorsville, UT 84123</p>
-                  <p class="grey-text text-lighten-4">(385) 646-5455</p>
+                  <p className="grey-text text-lighten-4">5225 S Redwood Rd, Taylorsville, UT 84123</p>
+                  <p className="grey-text text-lighten-4">(385) 646-5455</p>
                 </div>
                 <div className="col l4 offset-l2 s12">
                   <ul className="buttons">

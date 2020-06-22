@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {fetchUser} from '../../actions'
+import {fetchUser, fetchStore} from '../../actions'
 import M from 'materialize-css';
 import './Header.css'
 
@@ -9,6 +9,7 @@ import './Header.css'
 class Header extends Component{
     componentDidMount(){
         this.props.fetchUser();
+        this.props.fetchStore();
         let elements = document.querySelectorAll('.dropdown-trigger');
         M.Dropdown.init(elements)
     }
@@ -25,6 +26,17 @@ class Header extends Component{
                 }
         }
     }
+    renderStore(){
+        switch(this.props.store){
+            case null:
+            case false: 
+                return null
+            default:
+                return(
+                    <li><a href={this.props.store[0].storeURL} target="_blank" rel="noopener noreferrer">Store</a></li>
+                )
+        }
+    }
     render(){
         return(
             <div>
@@ -37,6 +49,7 @@ class Header extends Component{
                             <li><Link to="/schedule">Schedule</Link></li>
                             <li><Link to="/sponsors">Sponsors</Link></li>
                             <li><Link to="/live/tvillefootball">Live</Link></li>
+                            {this.renderStore()}
                         </ul>
                     
                     </div>
@@ -51,6 +64,7 @@ class Header extends Component{
                                 <li><Link to="/schedule">Schedule</Link></li>
                                 <li><Link to="/sponsors">Sponsors</Link></li>
                                 <li><Link to="/live/tvillefootball">Live</Link></li>
+                                {this.renderStore()}
                             </ul> 
                     </div>
                 </nav>
@@ -64,8 +78,8 @@ class Header extends Component{
     }
 }
 
-function mapStateTopProps({user}){
-    return {user}
+function mapStateTopProps({user, store}){
+    return {user, store}
 }
 
-export default connect(mapStateTopProps, {fetchUser})(Header)
+export default connect(mapStateTopProps, {fetchUser, fetchStore})(Header)

@@ -39,7 +39,7 @@ class Game extends Component{
                             </div>
                             <div className="event-summary">
                                 <h5>Game Summary</h5>
-                                 <div>{event.summary}</div>
+                                <div>{event.summary}</div>
                             </div>
                         </div>)
                     }

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER, FETCH_COACHES, FETCH_EVENTS, FETCH_SPONSORS } from './types';
+import { FETCH_USER, FETCH_COACHES, FETCH_EVENTS, FETCH_SPONSORS, FETCH_STORE } from './types';
 
 export const fetchUser = () => async dispatch =>{
     const res = await axios.get('/api/current_user')
@@ -19,4 +19,9 @@ export const fetchEvents = () => async dispatch =>{
 export const fetchSponsors = () => async dispatch =>{
     const res = await axios.get('/api/sponsors/getAllSponsors')
     dispatch({type: FETCH_SPONSORS, payload: res.data})
+}
+
+export const fetchStore = () => async dispatch =>{
+    const res = await axios.get('/api/storeURL/getStore')
+    dispatch({type: FETCH_STORE, payload: res.data})
 }

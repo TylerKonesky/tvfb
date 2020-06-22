@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 require('./models/Coach');
 require('./models/Event');
 require('./models/Sponsor');
+require('./models/Store');
 require('./models/User');
 
 require('./services/passport');
@@ -33,6 +34,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app)
 require('./routes/coachRoutes')(app)
 require('./routes/eventRoutes')(app)
+require('./routes/storeRoutes')(app)
 require('./routes/sponsorRoutes')(app)
 
 
