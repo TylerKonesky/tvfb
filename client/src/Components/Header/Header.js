@@ -32,6 +32,9 @@ class Header extends Component{
             case false: 
                 return null
             default:
+                if(this.props.store[0].storeURL === null){
+                    return null;
+                }
                 return(
                     <li><a href={this.props.store[0].storeURL} target="_blank" rel="noopener noreferrer">Store</a></li>
                 )
