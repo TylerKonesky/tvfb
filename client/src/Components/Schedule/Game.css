@@ -2,10 +2,56 @@
     text-align: center;
 }
 
-.event-mvp{
+.score-wrapper{
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px;
+}
 
+.win{
+    margin-left: 10px;
+    color: green
+}
+
+.loss{
+    color: red;
+    margin-left: 10px;
+}
+
+.mvp-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 20px;
+}
+
+.omvp{
+    border: 1px solid royalblue;
+    padding: 15px;
+    background-color: royalblue;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
+}
+
+.dmvp{
+    border: 1px solid royalblue;
+    padding: 15px;
+    background-color: royalblue;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 1px black;
+    margin-left: 3px;
 }
 
 .event-summary{
-    
+    text-align: center;
+    margin-top: 40px;
 }
+
+
+

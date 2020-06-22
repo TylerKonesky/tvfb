@@ -23,13 +23,22 @@ class Game extends Component{
                             <h2 className="event-header">
                                 Taylorsville VS {event.opponent} 
                             </h2>
-                            <div>Score: {event.score} Result: {event.result}</div>
-                            <div className="event-mvp">
-                                Offenseive MVP: {event.omvp}
-                                Dffenseive MVP: {event.dmvp}
+                            <div className="score-wrapper">
+                                <div className="score">
+                                    Score: {event.score}
+                                </div>
+                                <div className={event.result === 'Win' ? 'win' : 'loss'}>
+                                    {event.result}
+                                </div>  
+                            </div>
+                            <div className="mvp-wrapper">
+                                <div className="omvp">Offensive MVP: {event.omvp}</div>
+                                <div className="dmvp">Defensive MVP: {event.dmvp}</div>
+                               
+                                
                             </div>
                             <div className="event-summary">
-                                <label>Summary</label>
+                                <h5>Game Summary</h5>
                                  <div>{event.summary}</div>
                             </div>
                         </div>)
@@ -39,7 +48,7 @@ class Game extends Component{
     }
     render(){
         return(
-        <div className="container body-size">
+        <div className="container body-size body-background">
             {this.renderGame()}    
         </div>
         )

@@ -20,3 +20,10 @@
     color: black;
     background-color: white;
 }
+
+.opponent-logo{
+    height: 50px;
+    width: 60px;
+    padding: 5px;
+    
+}

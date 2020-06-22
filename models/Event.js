@@ -13,7 +13,8 @@ const eventSchema = new Schema({
     summary: {type: String, default: null},
     omvp: {type: String, default: null},
     dmvp: {type: String, default: null},
-    highlights: {type: String, default: null}
+    highlights: {type: String, default: null},
+    oppLogo: {type: String, default: null}
     
 })
 

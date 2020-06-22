@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchEvents} from '../../actions';
 import DateFormat from '../Helpers/dateFormat'
+import RenderImage from '../Helpers/renderImage';
 import './Schedule.css';
 import '../../bodysize.css';
 
@@ -81,7 +82,10 @@ class Schedule extends Component{
                                         {event.time}
                                     </td>
                                     <td>
-                                        {event.opponent}
+                                        <div>
+                                            <div><RenderImage image={event.oppLogo} classProp="opponent-logo"/></div>  
+                                            {/* {event.opponent}   */}
+                                        </div>
                                     </td>
                                     <td>
                                         {event.location}

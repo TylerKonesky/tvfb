@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
 import {fetchUser, fetchEvents} from '../../../actions';
+import RenderImage from '../../Helpers/renderImage';
 import M from 'materialize-css';
 import axios from 'axios';
 import {toast} from 'react-toastify';
@@ -23,7 +24,8 @@ class EditEvent extends Component{
             score: '',
             summary: '',
             omvp: '',
-            dmvp: ''
+            dmvp: '',
+            oppLogo: ''
 
         }
     }
@@ -55,7 +57,8 @@ class EditEvent extends Component{
             score: event.score,
             summary: event.summary,
             omvp: event.omvp,
-            dmvp: event.dmvp
+            dmvp: event.dmvp,
+            oppLogo: event.oppLogo
         })
     }
 
@@ -123,6 +126,14 @@ class EditEvent extends Component{
             dmvp: e
         })
     }
+
+    fileUploader = event => {
+        const reader = new FileReader();
+        reader.readAsDataURL(event.target.files[0]);
+        reader.onload = () => reader.result;
+        setTimeout(()=>this.setState({oppLogo: reader.result}) , 500)
+    }
+
     handleUpdate(e){
         e.preventDefault();
         let event = {
@@ -138,6 +149,7 @@ class EditEvent extends Component{
             omvp: this.state.omvp,
             dmvp: this.state.dmvp,
             opponent: this.state.opponent,
+            oppLogo: this.state.oppLogo
 
         }
         axios.put('/api/events/update', event).then(res=>{
@@ -231,6 +243,16 @@ class EditEvent extends Component{
                                         <option value="Loss">Loss</option>  
                                          
                                 </select> 
+
+                                <div>
+                                    <label>Opponent Logo</label>
+                                    <input type="file" onChange={(e)=>this.fileUploader(e)}></input>
+                                </div>
+
+                                {
+                                    this.state.oppLogo !== null ? <RenderImage image={this.state.oppLogo}/> : null
+                                }
+                               
 
                                 <div className="buttons-wrapper">
                                     <Link className="waves effect waves-light btn delete-button right" to='/pageadmin/manageSchedule'>Cancel<i className="material-icons right">clear</i></Link>
