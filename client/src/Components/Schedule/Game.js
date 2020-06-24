@@ -42,6 +42,8 @@ class Game extends Component{
                                 <div>{event.summary}</div>
                             </div>
                         </div>)
+                    }else{
+                        return null;
                     }
                 })
         }

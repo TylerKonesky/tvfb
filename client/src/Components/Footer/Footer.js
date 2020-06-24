@@ -11,8 +11,8 @@ class Footer extends Component{
               <div className="row">
                 <div className="col l6 s12">
                   {/* <h5 class="white-text">Footer Content</h5> */}
-                  <p className="grey-text text-lighten-4">5225 S Redwood Rd, Taylorsville, UT 84123</p>
-                  <p className="grey-text text-lighten-4">(385) 646-5455</p>
+                  <p className="grey-text text-lighten-4"><i className="material-icons left">place</i>5225 S Redwood Rd, Taylorsville, UT 84123</p>
+                  <p className="grey-text text-lighten-4"><i className="material-icons left">phone</i>(385) 646-5455</p>
                 </div>
                 <div className="col l4 offset-l2 s12">
                   <ul className="buttons">

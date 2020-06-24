@@ -9,7 +9,7 @@ class LiveStream extends React.Component{
         return (
             <div className="container body-size">
                 <h2>Tavlorsville Football</h2>
-                <ReactTwitchEmbedVideo channel="teepee"/>
+                {/* <ReactTwitchEmbedVideo channel="teepee"/> */}
             </div>
         ) 
     }

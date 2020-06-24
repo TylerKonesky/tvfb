@@ -42,7 +42,7 @@ class Coaches extends Component{
     render(){
         return(
             <div className="container page-wrapper body-size body-background">
-                <h1 className="page-title">Coaches</h1>
+                <h2 className="page-title">Coaches</h2>
                 <div className="coaches-grid">
                     {this.renderCoaches()}
                 </div>

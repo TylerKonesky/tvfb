@@ -40,7 +40,6 @@ module.exports = (app) => {
     })
 
     app.put('/api/events/update', requireLogin, requireAdmin, async (req, res) =>{
-        console.log(req.body)
        try{
         const updateEvent = await Event.findByIdAndUpdate(req.body.id, req.body)
         res.status(200).send(updateEvent)

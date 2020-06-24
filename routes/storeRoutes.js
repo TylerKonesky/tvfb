@@ -26,7 +26,6 @@ module.exports = (app) => {
     })
 
     app.put('/api/storeURL/update', requireLogin, requireAdmin, async(req, res) =>{
-        console.log(req.body)
         try{
             const updateStore = await Store.findByIdAndUpdate(req.body._id, req.body);
             res.status(200).send(updateStore)       

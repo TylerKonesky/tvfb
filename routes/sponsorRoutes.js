@@ -45,7 +45,6 @@ module.exports = (app) => {
     })
 
     app.delete('/api/sponsors/deleteSponsor/:id', requireLogin, requireAdmin, async (req, res) =>{
-        console.log(req.params.id)
         try{
             const deleteSponsor = await Sponsor.findByIdAndDelete(req.params.id);
             res.status(200).send("Sponsor Deleted")

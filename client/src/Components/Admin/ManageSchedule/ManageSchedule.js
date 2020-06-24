@@ -60,7 +60,6 @@ class ManageSchedule extends Component{
 
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state.date, this.state.time, this.state.event)
         axios.post('/api/events/addNewEvent', {
             event: this.state.event,
             date: this.state.date, 
