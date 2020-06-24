@@ -10,6 +10,7 @@ import EditCoach from './Components/Admin/ManageCoaches/EditCoaches';
 import EditEvent from './Components/Admin/ManageSchedule/EditEvent';
 import EditSponsors from './Components/Admin/ManageSponsors/EditSponsors';
 import Footer from './Components/Footer/Footer';
+import Fundraisers from './Components/Fundraisers/Fundraisers';
 import Game from './Components/Schedule/Game';
 import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
@@ -29,6 +30,7 @@ function App() {
             <Header />
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/coaches" component={Coaches}></Route>
+            <Route exact path="/fundraisers" component={Fundraisers}></Route>
             <Route path='/schedule/game/:id' component={Game}></Route>
             <Route exact path="/pageAdmin" component={Admin}></Route>
             <Route exact path="/pageAdmin/manageCoaches" component={ManageCoaches}></Route>
