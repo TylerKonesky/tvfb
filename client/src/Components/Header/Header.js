@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {fetchUser, fetchStore} from '../../actions'
+// import 'semantic-ui-css/semantic.min.css';
 import M from 'materialize-css';
 import './Header.css'
 
@@ -78,8 +79,6 @@ class Header extends Component{
                             </ul> 
                     </div>
                 </nav>
-                
-
             </div>
             
                
