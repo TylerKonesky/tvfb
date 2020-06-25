@@ -67,8 +67,8 @@ class Header extends Component{
                 <nav className="mobile-screen"> 
                     <div className="nav-wrapper header-color">   
                         <a href="/" className="left brand-logo logo header-text ">Taylorsville Football</a>
-                        <a className="dropdown-button right dropdown-button-settings dropdown-trigger browser-default" href="#!" data-target="dropdown"><i className="material-icons large">dehaze</i></a>
-                            <ul id="dropdown" className="dropdown-content browser-default"> 
+                        <a className="dropdown-button right dropdown-button-settings dropdown-trigger" href="#!" data-target="dropdown"><i className="material-icons large">dehaze</i></a>
+                            <ul id="dropdown" className="dropdown-content"> 
                                 {this.renderAdminHeader()}
                                 <li><Link to="/coaches">Coaches</Link></li>
                                 <li><Link to="/schedule">Schedule</Link></li>
